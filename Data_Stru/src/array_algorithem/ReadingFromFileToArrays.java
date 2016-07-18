@@ -21,6 +21,7 @@ public class ReadingFromFileToArrays {
 			for (int i = 0; i <= 9; i++) {
 				myIntArray[i] = scanner.nextInt();
 			}
+
 			System.out.println("I am here 1");
 			scanner.close();
 			scanner = new Scanner(file);
