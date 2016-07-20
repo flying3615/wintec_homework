@@ -12,7 +12,7 @@ public class ReadingFromFileToArrays {
 		String[] myStringArray = new String[10];
 		System.out.println("Hi - Wellcome to week 2");
 
-		File file = new File(System.getProperty("user.dir") + "file1.txt");
+		File file = new File("file1.txt");
 		try {
 			Scanner scanner = new Scanner(file);
 			for (int i = 0; i <= 9; i++) {
