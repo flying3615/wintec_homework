@@ -16,30 +16,7 @@ import javafx.stage.Stage;
 
 public class SierpinskiTriangle extends Application {
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		SierpinskiTrianglePane trianglePane = new SierpinskiTrianglePane();
-		TextField tforderField = new TextField();
-		tforderField.setOnAction(e -> trianglePane.setOrder(Integer.parseInt(tforderField.getText())));
-		tforderField.setPrefColumnCount(4);
-		tforderField.setAlignment(Pos.BOTTOM_RIGHT);
 
-		HBox hBox = new HBox(10);
-		hBox.getChildren().addAll(new Label("Enter an oder: "),tforderField);
-		hBox.setAlignment(Pos.CENTER);
-
-		BorderPane borderPane = new BorderPane();
-		borderPane.setCenter(trianglePane);
-		borderPane.setBottom(hBox);
-
-		Scene scene = new Scene(borderPane,200,210);
-		primaryStage.setTitle("SierpinskiTriangle");
-		primaryStage.setScene(scene);
-		primaryStage.show();
-
-		scene.widthProperty().addListener(ov->trianglePane.paint());
-		scene.heightProperty().addListener(ov->trianglePane.paint());
-	}
 
 	static class SierpinskiTrianglePane extends Pane {
 		private int order = 0;
@@ -77,6 +54,31 @@ public class SierpinskiTriangle extends Application {
 
 		}
 
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		SierpinskiTrianglePane trianglePane = new SierpinskiTrianglePane();
+		TextField tforderField = new TextField();
+		tforderField.setOnAction(e -> trianglePane.setOrder(Integer.parseInt(tforderField.getText())));
+		tforderField.setPrefColumnCount(4);
+		tforderField.setAlignment(Pos.BOTTOM_RIGHT);
+
+		HBox hBox = new HBox(10);
+		hBox.getChildren().addAll(new Label("Enter an oder: "),tforderField);
+		hBox.setAlignment(Pos.CENTER);
+
+		BorderPane borderPane = new BorderPane();
+		borderPane.setCenter(trianglePane);
+		borderPane.setBottom(hBox);
+
+		Scene scene = new Scene(borderPane,200,210);
+		primaryStage.setTitle("SierpinskiTriangle");
+		primaryStage.setScene(scene);
+		primaryStage.show();
+
+		scene.widthProperty().addListener(ov->trianglePane.paint());
+		scene.heightProperty().addListener(ov->trianglePane.paint());
 	}
 
 }
