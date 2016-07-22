@@ -38,44 +38,56 @@ public class Assignment1 {
 		return (true);
 	}// end of checkAllEqual
 
-	private static int[] numberBiggerThanAvg(int[] input) {
-		double avgNum = averageNum(input);
+	//This is function for find the number bigger than Avg
+	private static int[] numberBiggerThanAvg(int[] A) {
+		double avgNum = averageNum(A);
 		int result_size = 0;
 		// so awkward to have double for-loop, one for init array size, other
 		// for adding elements
 		// ArrayList is a solution
-		for (int i = 0; i < input.length; i++) {
-			if (avgNum < input[i])
+		for (int i = 0; i < A.length; i++) {
+			if (avgNum < A[i])
 				result_size++;
 		}
 		int[] result = new int[result_size];
 		int j = 0;
-		for (int i = 0; i < input.length; i++) {
-			if (avgNum < input[i])
-				result[j++] = input[i];
+		for (int i = 0; i < A.length; i++) {
+			if (avgNum < A[i])
+				result[j++] = A[i];
 		}
 		return result;
-	}
+	}// end of numberBiggerThanAvg
 
-	// The average number.
-	private static double averageNum(int[] input) {
+	// The function for the average number.
+	private static double averageNum(int[] A) {
 		double sum = 0;
-		for (int x : input) {
+		for (int x : A) {
 			sum += x;
 		}
-		return sum / input.length;
-	}
+		return sum / A.length;
+	}// end of averageNum
 
 	// The total number of digits of the 20 numbers.
-	private static int totalDig(int[] input) {
-		StringBuffer sBuffer = new StringBuffer();
-		for (int x : input) {
-			sBuffer.append(x);
+	//divide 10
+	private static int totalDig(int[] A) {
+		int totalDig = 0;
+		for (int x : A) {
+			totalDig+=dig(1, x);
 		}
-		return sBuffer.toString().length();
+		return totalDig;
+
+	}// end of totalDig
+
+	private static int dig(int acc,int number){
+		if(number/10==0){
+			return acc;
+		}else{
+			return dig(acc+1,number = number/10) ;
+		}
 	}
 
-	// The maximum number.
+
+	// The maxNum number.
 	private static int maxNum(int[] input) {
 		if (input == null || input.length == 0)
 			return 0;
@@ -85,7 +97,7 @@ public class Assignment1 {
 				ind = i;
 		}
 		return input[ind];
-	}
+	}//end of maxNum
 
 	// The number of prime numbers.
 	private static int totalPrimeNumber(int[] input) {
@@ -109,6 +121,8 @@ public class Assignment1 {
 		return true;
 	}
 
+
+	//auxiliary method to init array from file
 	private static int[] readInputFomeFile() {
 		File file = new File("inputassignment1.txt");
 		Scanner scanner = null;
@@ -128,6 +142,6 @@ public class Assignment1 {
 		}
 		System.out.println(Arrays.toString(myIntArray));
 		return myIntArray;
-	}
+	}//end of readInputFomeFile
 
 }
