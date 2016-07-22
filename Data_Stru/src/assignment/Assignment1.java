@@ -7,31 +7,29 @@ import java.util.Scanner;
 
 public class Assignment1 {
 
-
 	public static void main(String[] args) {
 		int[] A = readInputFomeFile();
-		 System.out.println("max "+maxNum(A));
-		 System.out.println("sum prime num "+totalPrimeNumber(A));
-		 System.out.println("total dig "+totalDig(A));
-		 System.out.println("avage number "+averageNum(A));
-		 System.out.println("avage number "+Arrays.toString(numberBiggerThanAvg(A)));
-		 System.out.println("All number are "+(checkAllEqual(A)?"":"NOT ")+"equal");
-		 System.out.println("All number are " + (checkAllDiff(A) ? "" : "NOT ") + "totally different");
+		System.out.println("max " + maxNum(A));
+		System.out.println("sum prime num " + totalPrimeNumber(A));
+		System.out.println("total dig " + totalDig(A));
+		System.out.println("avage number " + averageNum(A));
+		System.out.println("avage number " + Arrays.toString(numberBiggerThanAvg(A)));
+		System.out.println("All number are " + (checkAllEqual(A) ? "" : "NOT ") + "equal");
+		System.out.println("All number are " + (checkAllDiff(A) ? "" : "NOT ") + "totally different");
 	} // end of main
-
 
 	// This function if all numbers in the array are different
 	private static boolean checkAllDiff(int[] A) {
 		for (int i = 0; i < A.length; i++) {
-			for (int j= i+1; j < A.length; j++) {
-				if (A[i] == A[j]) return (false);
+			for (int j = i + 1; j < A.length; j++) {
+				if (A[i] == A[j])
+					return (false);
 			}
 		}
 		return (true);
 	} // end of checkAllDiff
 
-
-	//This is function if all numbers in the array are the same
+	// This is function if all numbers in the array are the same
 	private static boolean checkAllEqual(int[] A) {
 		for (int i = 1; i < A.length; i++) {
 			if (A[0] != A[i])
@@ -39,8 +37,6 @@ public class Assignment1 {
 		}
 		return (true);
 	}// end of checkAllEqual
-
-
 
 	private static int[] numberBiggerThanAvg(int[] input) {
 		double avgNum = averageNum(input);
@@ -61,8 +57,7 @@ public class Assignment1 {
 		return result;
 	}
 
-
-	//The average number.
+	// The average number.
 	private static double averageNum(int[] input) {
 		double sum = 0;
 		for (int x : input) {
@@ -71,8 +66,7 @@ public class Assignment1 {
 		return sum / input.length;
 	}
 
-
-	//The total number of digits of the 20 numbers.
+	// The total number of digits of the 20 numbers.
 	private static int totalDig(int[] input) {
 		StringBuffer sBuffer = new StringBuffer();
 		for (int x : input) {
@@ -81,17 +75,19 @@ public class Assignment1 {
 		return sBuffer.toString().length();
 	}
 
-	//The maximum number.
+	// The maximum number.
 	private static int maxNum(int[] input) {
-		if(input==null||input.length==0) return 0;
+		if (input == null || input.length == 0)
+			return 0;
 		int ind = 0;
-		for (int i=0;i<input.length;i++) {
-			if(input[i]>input[ind]) ind=i;
+		for (int i = 0; i < input.length; i++) {
+			if (input[i] > input[ind])
+				ind = i;
 		}
 		return input[ind];
 	}
 
-	//The number of prime numbers.
+	// The number of prime numbers.
 	private static int totalPrimeNumber(int[] input) {
 		int sum = 0;
 		for (int temp : input) {
@@ -102,8 +98,9 @@ public class Assignment1 {
 	}
 
 	private static boolean checkPrimeNumber(int num) {
-		//1 is not prime
-		if(num==1) return false;
+		// 1 is not prime
+		if (num == 1)
+			return false;
 		for (int i = 2; i < num; i++) {
 			if (num % i == 0) {
 				return false;
