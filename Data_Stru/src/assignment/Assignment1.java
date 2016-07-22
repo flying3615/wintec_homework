@@ -7,44 +7,40 @@ import java.util.Scanner;
 
 public class Assignment1 {
 
+
 	public static void main(String[] args) {
-		int[] input = readInputFomeFile();
-		 System.out.println("max "+maxNum(input));
-		 System.out.println("sum prime num "+totalPrimeNumber(input));
-		 System.out.println("total dig "+totalDig(input));
-		 System.out.println("avage number "+averageNum(input));
-		 System.out.println("avage number "+Arrays.toString(numberBiggerThanAvg(input)));
-		 System.out.println("All number are "+(checkAllEqual(input)?"":"NOT ")+"equal");
-		 System.out.println("All number are " + (checkAllDiff(input) ? "" : "NOT ") + "totally different");
-	}
+		int[] A = readInputFomeFile();
+		 System.out.println("max "+maxNum(A));
+		 System.out.println("sum prime num "+totalPrimeNumber(A));
+		 System.out.println("total dig "+totalDig(A));
+		 System.out.println("avage number "+averageNum(A));
+		 System.out.println("avage number "+Arrays.toString(numberBiggerThanAvg(A)));
+		 System.out.println("All number are "+(checkAllEqual(A)?"":"NOT ")+"equal");
+		 System.out.println("All number are " + (checkAllDiff(A) ? "" : "NOT ") + "totally different");
+	} // end of main
 
-	private static boolean checkAllDiff(int[] input) {
-		boolean isDiff = true;
-		for (int i = 0; i < input.length; i++) {
-			int newItems[] = new int[input.length - (i + 1)];
-			// copy the rest of array as new one
-			System.arraycopy(input, i + 1, newItems, 0, input.length - (i + 1));
-			isDiff = isDiff && checkRest(newItems, input[i]);
-		}
-		return isDiff;
-	}
 
-	private static boolean checkRest(int[] rest, int current) {
-		for (int tmp : rest) {
-			if (tmp == current)
-				return false;
+	// This function if all numbers in the array are different
+	private static boolean checkAllDiff(int[] A) {
+		for (int i = 0; i < A.length; i++) {
+			for (int j= i+1; j < A.length; j++) {
+				if (A[i] == A[j]) return (false);
+			}
 		}
-		return true;
-	}
+		return (true);
+	} // end of checkAllDiff
 
-	private static boolean checkAllEqual(int[] input) {
-		// if all element equale, the first one will equal the rest
-		for (int i = 1; i < input.length; i++) {
-			if (input[0] != input[i])
-				return false;
+
+	//This is function if all numbers in the array are the same
+	private static boolean checkAllEqual(int[] A) {
+		for (int i = 1; i < A.length; i++) {
+			if (A[0] != A[i])
+				return (false);
 		}
-		return true;
-	}
+		return (true);
+	}// end of checkAllEqual
+
+
 
 	private static int[] numberBiggerThanAvg(int[] input) {
 		double avgNum = averageNum(input);
