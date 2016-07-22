@@ -68,7 +68,6 @@ public class Assignment1 {
 	}// end of averageNum
 
 	// The total number of digits of the 20 numbers.
-	//divide 10
 	private static int totalDig(int[] A) {
 		int totalDig = 0;
 		for (int x : A) {
@@ -82,7 +81,7 @@ public class Assignment1 {
 		if(number/10==0){
 			return acc;
 		}else{
-			return dig(acc+1,number = number/10) ;
+			return dig(acc+1, number/10) ;
 		}
 	}
 
@@ -112,13 +111,13 @@ public class Assignment1 {
 	private static boolean checkPrimeNumber(int num) {
 		// 1 is not prime
 		if (num == 1)
-			return false;
+			return (false);
 		for (int i = 2; i < num; i++) {
 			if (num % i == 0) {
-				return false;
+				return (false);
 			}
 		}
-		return true;
+		return (true);
 	}
 
 
