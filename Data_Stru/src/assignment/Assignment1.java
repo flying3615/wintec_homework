@@ -10,10 +10,10 @@ public class Assignment1 {
 	public static void main(String[] args) {
 		int[] A = readInputFomeFile();
 		System.out.println("max " + maxNum(A));
-		System.out.println("sum prime num " + totalPrimeNumber(A));
+		System.out.println("sum of prime num = " + totalPrimeNumber(A));
 		System.out.println("total dig " + totalDig(A));
-		System.out.println("avage number " + averageNum(A));
-		System.out.println("avage number " + Arrays.toString(numberBiggerThanAvg(A)));
+		System.out.println("average number " + averageNum(A));
+		System.out.println("Number bigger than average number = " + Arrays.toString(numberBiggerThanAvg(A)));
 		System.out.println("All number are " + (checkAllEqual(A) ? "" : "NOT ") + "equal");
 		System.out.println("All number are " + (checkAllDiff(A) ? "" : "NOT ") + "totally different");
 	} // end of main

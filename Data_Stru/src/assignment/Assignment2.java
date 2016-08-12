@@ -2,6 +2,7 @@ package assignment;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Assignment2 {
@@ -13,8 +14,7 @@ public class Assignment2 {
 		try {
 			scanner = new Scanner(file);
 			while (scanner.hasNext()) {
-				Item item = new Item(scanner.nextInt());
-				ItemList.addItem(item);
+				ItemList.addItem(scanner.nextInt());
 			}
 		} catch (IOException e) {
 			System.out.println("Unable to create: " + e.getMessage());
@@ -31,82 +31,100 @@ public class Assignment2 {
 		// ItemList itemList2 = readInputFomeFile(new File("file1.txt"));
 		// ItemList itemList3 = readInputFomeFile(new File("file1.txt"));
 
+		LinkedList aLinkedList = new LinkedList<>();
+
 		ItemList itemList = new ItemList();
-		System.out.println(itemList.size);
 
-		Item item1 = new Item(1);
-		Item item2 = new Item(2);
-		Item item3 = new Item(3);
-		Item item4 = new Item(4);
-		Item item5 = new Item(5);
-		Item item6 = new Item(6);
-		Item item7 = new Item(7);
-		Item item8 = new Item(8);
-		Item item9 = new Item(9);
-
-		itemList.addItem(item1);
-		itemList.addItem(item2);
-		itemList.addItem(item3);
-		itemList.addItem(item4);
-		itemList.addItem(item5);
-		itemList.addItem(item6);
-		itemList.addItem(item7);
-		itemList.addItem(item8);
-		itemList.addItem(item9);
+		itemList.addItem(1);
+		itemList.addItem(2);
+		itemList.addItem(3);
+		itemList.addItem(4);
+		itemList.addItem(5);
+		itemList.addItem(6);
+		itemList.addItem(7);
+		itemList.addItem(8);
+		itemList.addItem(9);
 
 		System.out.println(itemList.print());
 		System.out.println(itemList.printReverse());
 		System.out.println(itemList.size);
 		System.out.println(itemList.getPrimeNumbers());
 
+		ItemList itemList1 = new ItemList();
+		ItemList itemList2 = new ItemList();
+		ItemList itemList3 = new ItemList();
+
+		itemList1.addItem(1);
+		itemList1.addItem(3);
+		itemList1.addItem(3);
+		itemList1.addItem(4);
+		itemList2.addItem(4);
+		itemList2.addItem(5);
+		itemList2.addItem(3);
+		itemList3.addItem(7);
+		itemList3.addItem(8);
+		itemList3.addItem(3);
+		itemList3.addItem(4);
+
+		getIntersection(itemList1, itemList2, itemList3);
+
 	}
 
-	private static void getIntersection(ItemList itemLists1,ItemList itemLists2,ItemList itemLists3 ){
-		Item current1 = itemLists1.head;
-		Item current2 = itemLists1.head;
-		Item current3 = itemLists1.head;
-
-		while(current1.next!=null){
-			while(current2.next!=null){
-				while (current3.next!=null) {
-					if(current1.equals(current2)&&current2.equals(current3)){
-						System.out.println(current1);
-					}
-					current3 = current3.next;
+	// how about four?
+	// move to linklist body
+	private static void getIntersection(ItemList itemLists1, ItemList itemLists2, ItemList itemLists3) {
+		ItemList.Item current1 = itemLists1.head;
+		ItemList.Item current2 = itemLists2.head;
+		ItemList.Item current3 = itemLists3.head;
+		ItemList tmpItemList = new ItemList();
+		while (current1 != null) {
+			while (current2 != null) {
+				if (current1.value == current2.value) {
+					tmpItemList.addItem(current2.value);
 				}
 				current2 = current2.next;
 			}
 			current1 = current1.next;
+			current2 = itemLists2.head;
 		}
 
+		ItemList.Item tmpHeadItem = tmpItemList.head;
+		while (tmpHeadItem != null) {
+			while (current3 != null) {
+				if (tmpHeadItem.value == current3.value) {
+					System.out.println("Same item " + current3);
+				}
+				current3 = current3.next;
+			}
+			tmpHeadItem = tmpHeadItem.next;
+			current3 = itemLists3.head;
+		}
 	}
-
-}
-
-class Item {
-
-	Item next;
-	Item prev;
-	Integer value;
-
-	public Item(Integer value) {
-		this.value = value;
-	}
-
-	@Override
-	public String toString() {
-		return "Item [value=" + value + "]";
-	}
-
 }
 
 class ItemList {
+
+	public static class Item {
+		Item next;
+		Item prev;
+		public Integer value;
+
+		public Item(Integer value) {
+			this.value = value;
+		}
+
+		@Override
+		public String toString() {
+			return "Item [value=" + value + "]";
+		}
+	}
 
 	Item head;
 	Item tail;
 	long size;
 
-	public void addItem(Item item) {
+	public void addItem(int value) {
+		Item item = new Item(value);
 		if (head == null) {
 			head = item;
 			tail = item;
@@ -135,14 +153,12 @@ class ItemList {
 		String result = "";
 		if (head != null) {
 			Item currentItem = head;
-			while (currentItem.next != null) {
+			while (currentItem != null) {
 				if (checkPrimeNumber(currentItem.value)) {
 					result += currentItem.value + ", ";
 				}
 				currentItem = currentItem.next;
 			}
-			if (checkPrimeNumber(tail.value))
-				result += tail.value;
 		}
 		return result;
 	}
@@ -151,11 +167,14 @@ class ItemList {
 		StringBuffer sBuffer = new StringBuffer("ItemList ");
 		if (head != null) {
 			Item currentItem = head;
-			while (currentItem.next != null) {
-				sBuffer.append("->[" + currentItem.value + "]");
+			while (currentItem != null) {
+				if (currentItem == head) {
+					sBuffer.append("[" + currentItem.value + "]");
+				} else {
+					sBuffer.append("->[" + currentItem.value + "]");
+				}
 				currentItem = currentItem.next;
 			}
-			sBuffer.append("->[" + tail.value + "]");
 		} else {
 			sBuffer.append("is empty");
 		}
@@ -166,15 +185,36 @@ class ItemList {
 		StringBuffer sBuffer = new StringBuffer("ItemList reverse ");
 		if (tail != null) {
 			Item currentItem = tail;
-			while (currentItem.prev != null) {
-				sBuffer.append("->[" + currentItem.value + "]");
+			while (currentItem != null) {
+				if (currentItem == tail) {
+					sBuffer.append("[" + currentItem.value + "]");
+				} else {
+					sBuffer.append("->[" + currentItem.value + "]");
+				}
 				currentItem = currentItem.prev;
 			}
-			sBuffer.append("->[" + head.value + "]");
 		} else {
 			sBuffer.append("is empty");
 		}
 		return sBuffer.toString();
+	}
+
+	public static ItemList calInterception(ItemList itemList){
+		return new ItemList();
+	}
+
+	public static void append(ItemList itemList){
+
+	}
+
+	public static ItemList getInter(ItemList... itemLists){
+		ItemList tmpList = new ItemList();
+		for(ItemList itemList:itemLists){
+			tmpList.append(tmpList.calInterception(itemList));
+		}
+
+
+		return tmpList;
 	}
 
 }
