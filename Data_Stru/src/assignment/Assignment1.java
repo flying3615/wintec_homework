@@ -1,7 +1,5 @@
 package assignment;
 
-import org.jetbrains.annotations.Contract;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -12,10 +10,10 @@ public class Assignment1 {
 	public static void main(String[] args) {
 		int[] A = readInputFomeFile();
 		System.out.println("max " + maxNum(A));
-		System.out.println("sum prime num " + totalPrimeNumber(A));
+		System.out.println("sum of prime num = " + totalPrimeNumber(A));
 		System.out.println("total dig " + totalDig(A));
-		System.out.println("avage number " + averageNum(A));
-		System.out.println("avage number " + Arrays.toString(numberBiggerThanAvg(A)));
+		System.out.println("average number " + averageNum(A));
+		System.out.println("Number bigger than average number = " + Arrays.toString(numberBiggerThanAvg(A)));
 		System.out.println("All number are " + (checkAllEqual(A) ? "" : "NOT ") + "equal");
 		System.out.println("All number are " + (checkAllDiff(A) ? "" : "NOT ") + "totally different");
 	} // end of main
@@ -70,6 +68,7 @@ public class Assignment1 {
 	}// end of averageNum
 
 	// The total number of digits of the 20 numbers.
+	//divide 10
 	private static int totalDig(int[] A) {
 		int totalDig = 0;
 		for (int x : A) {
@@ -83,7 +82,7 @@ public class Assignment1 {
 		if(number/10==0){
 			return acc;
 		}else{
-			return dig(acc+1, number/10) ;
+			return dig(acc+1,number = number/10) ;
 		}
 	}
 
@@ -104,8 +103,10 @@ public class Assignment1 {
 	private static int totalPrimeNumber(int[] input) {
 		int sum = 0;
 		for (int temp : input) {
-			if (checkPrimeNumber(temp))
+			if (checkPrimeNumber(temp)){
+				System.out.print(temp+" ");
 				sum++;
+			}
 		}
 		return sum;
 	}
@@ -113,13 +114,13 @@ public class Assignment1 {
 	private static boolean checkPrimeNumber(int num) {
 		// 1 is not prime
 		if (num == 1)
-			return (false);
-		for (int i = 2; i < num; i++) {
+			return false;
+		for (int i = 2; i <= Math.sqrt(num); i++) {
 			if (num % i == 0) {
-				return (false);
+				return false;
 			}
 		}
-		return (true);
+		return true;
 	}
 
 
