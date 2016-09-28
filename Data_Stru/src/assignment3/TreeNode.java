@@ -1,6 +1,5 @@
 package assignment3;
 
-import java.util.ArrayList;
 
 /**
  * Created by liuyufei on 28/09/16.
