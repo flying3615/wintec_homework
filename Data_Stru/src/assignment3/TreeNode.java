@@ -15,4 +15,19 @@ public class TreeNode<E> {
 
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TreeNode)) return false;
+
+        TreeNode<?> treeNode = (TreeNode<?>) o;
+
+        return element.equals(treeNode.element);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return element.hashCode();
+    }
 }
