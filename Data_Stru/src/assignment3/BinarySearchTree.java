@@ -119,7 +119,7 @@ public class BinarySearchTree {
     private void printSubTree(TreeNode current, int level) {
         if (current == null) return;
         if (current.left == null && current.right == null) {
-            System.out.println("leaf =" + current.element);
+//            System.out.println("leaf =" + current.element);
             return;
         }
         System.out.println("----level " + (level++) + "-----");
@@ -132,8 +132,8 @@ public class BinarySearchTree {
             System.out.println();
         }
 
-        printSubTree(current.left, level);
         printSubTree(current.right, level);
+        printSubTree(current.left, level);
     }
 
     public boolean deleteNode(TreeNode<Integer> node) {
@@ -173,11 +173,9 @@ public class BinarySearchTree {
         if (current.left == null && current.right == null) {
             switch (side) {
                 case LEFT:
-                    current = null;
                     parent.left = null;
                     break;
                 case RIGHT:
-                    current = null;
                     parent.right = null;
                     break;
                 //no parent,single root without child
@@ -193,11 +191,9 @@ public class BinarySearchTree {
             switch (side) {
                 case LEFT:
                     parent.left = current.left == null ? current.right : current.left;
-                    current = null;
                     break;
                 case RIGHT:
                     parent.right = current.left == null ? current.right : current.left;
-                    current = null;
                     break;
                 //no parent,single root without child
                 case UNCERTAIN:
@@ -256,13 +252,18 @@ public class BinarySearchTree {
         BinarySearchTree bst = new BinarySearchTree();
 
         System.out.println("------insert---------");
-        System.out.println(bst.insert(new TreeNode<>(31)));
-        System.out.println(bst.insert(new TreeNode<>(22)));
-        System.out.println(bst.insert(new TreeNode<>(3)));
-        System.out.println(bst.insert(new TreeNode<>(14)));
+        System.out.println(bst.insert(new TreeNode<>(37)));
+        System.out.println(bst.insert(new TreeNode<>(24)));
+        System.out.println(bst.insert(new TreeNode<>(42)));
         System.out.println(bst.insert(new TreeNode<>(7)));
-        System.out.println(bst.insert(new TreeNode<>(66)));
-        System.out.println(bst.insert(new TreeNode<>(5)));
+        System.out.println(bst.insert(new TreeNode<>(32)));
+        System.out.println(bst.insert(new TreeNode<>(40)));
+        System.out.println(bst.insert(new TreeNode<>(120)));
+        System.out.println(bst.insert(new TreeNode<>(2)));
+        System.out.println(bst.insert(new TreeNode<>(38)));
+        System.out.println(bst.insert(new TreeNode<>(41)));
+        System.out.println(bst.insert(new TreeNode<>(100)));
+        System.out.println(bst.insert(new TreeNode<>(130)));
 
         System.out.println();
         System.out.println("------search_rec---------");
@@ -272,9 +273,9 @@ public class BinarySearchTree {
 
         System.out.println();
         System.out.println("------search_loop---------");
-        System.out.println(bst.search_loop(new TreeNode<>(14)));
-        System.out.println(bst.search_loop(new TreeNode<>(66)));
-        System.out.println(bst.search_loop(new TreeNode<>(10)));
+//        System.out.println(bst.search_loop(new TreeNode<>(14)));
+//        System.out.println(bst.search_loop(new TreeNode<>(66)));  ??
+//        System.out.println(bst.search_loop(new TreeNode<>(10)));
 
         System.out.println();
         System.out.println("------find height---------");
@@ -282,12 +283,18 @@ public class BinarySearchTree {
         System.out.println("lowest level=" + bst.findLowHeight(bst.root));
 
         System.out.println();
+        System.out.println("------print incre order---------");
+        bst.prIncOrder(bst.root);
+
+        System.out.println();
         System.out.println("------print level by level---------");
         bst.printLevelByLevel(bst.root);
 
-        System.out.println();
-        System.out.println("------print incre order---------");
-        bst.prIncOrder(bst.root);
+
+//        bst.deleteNode(new TreeNode<>(3));
+//        System.out.println();
+//        System.out.println("------print level by level---------");
+//        bst.printLevelByLevel(bst.root);
     }
 
 }
