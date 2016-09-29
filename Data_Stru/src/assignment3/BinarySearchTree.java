@@ -1,5 +1,8 @@
 package assignment3;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import static assignment3.BinarySearchTree.SIDE.*;
 
 /**
@@ -103,37 +106,35 @@ public class BinarySearchTree {
     }
 
 
-    //Uncompleted
-    public void printLevelByLevel(TreeNode current) {
-        if (current == null || this.root == null) {
-            return;
-        } else if (current.equals(root)) {
-            System.out.println("root=" + current.element);
-            this.printSubTree(current, 0);
-        } else {
-            //print from an arbitrary node
+    public void printLevelByLevel(TreeNode current){
+        int height = this.findHighHeight(current);
+        for(int i=0;i<height;i++){
+            if(i==0) System.out.println("root="+current.element);
+            System.out.println();
+            System.out.println("-------level "+i+"----------");
+            this.printSubTree(current,i,0);
         }
     }
+//                     37
+//                  /       \
+//                 /         \
+//                /           \
+//               24           42
+//              /  \        /   \
+//             7    32     40   120
+//            / \   / \   / \    / \
+//           2   8 25 34 38 41 100 130
+    private void printSubTree(TreeNode current, int level, int acc) {
+        if(current==null) return;
 
-
-    private void printSubTree(TreeNode current, int level) {
-        if (current == null) return;
-        if (current.left == null && current.right == null) {
-//            System.out.println("leaf =" + current.element);
-            return;
+        if(acc==level){
+            if(current.left!=null)System.out.print("left="+current.left.element+" ");
+            if(current.right!=null)System.out.print("right="+current.right.element+" ");
+        }else{
+            acc+=1;
+            printSubTree(current.left,level,acc);
+            printSubTree(current.right,level,acc);
         }
-        System.out.println("----level " + (level++) + "-----");
-        if (current.left != null) {
-            System.out.print("left=" + current.left.element + " ");
-        }
-        if (current.right != null) {
-            System.out.println("right=" + current.right.element);
-        } else {
-            System.out.println();
-        }
-
-        printSubTree(current.right, level);
-        printSubTree(current.left, level);
     }
 
     public boolean deleteNode(TreeNode<Integer> node) {
@@ -231,10 +232,14 @@ public class BinarySearchTree {
 
     private TreeNode<Integer> findSmallestNode(TreeNode from) {
         TreeNode current = from;
+        TreeNode last_node = null;
+
         while (current != null) {
+            last_node = current;
             current = current.left;
         }
-        return current;
+        System.out.println("smallest=" + last_node.element);
+        return last_node;
     }
 
 
@@ -258,12 +263,15 @@ public class BinarySearchTree {
         System.out.println(bst.insert(new TreeNode<>(7)));
         System.out.println(bst.insert(new TreeNode<>(32)));
         System.out.println(bst.insert(new TreeNode<>(40)));
-        System.out.println(bst.insert(new TreeNode<>(120)));
+//        System.out.println(bst.insert(new TreeNode<>(120)));
         System.out.println(bst.insert(new TreeNode<>(2)));
+        System.out.println(bst.insert(new TreeNode<>(8)));
+        System.out.println(bst.insert(new TreeNode<>(25)));
+        System.out.println(bst.insert(new TreeNode<>(34)));
         System.out.println(bst.insert(new TreeNode<>(38)));
         System.out.println(bst.insert(new TreeNode<>(41)));
-        System.out.println(bst.insert(new TreeNode<>(100)));
-        System.out.println(bst.insert(new TreeNode<>(130)));
+//        System.out.println(bst.insert(new TreeNode<>(100)));
+//        System.out.println(bst.insert(new TreeNode<>(130)));
 
         System.out.println();
         System.out.println("------search_rec---------");
@@ -291,7 +299,7 @@ public class BinarySearchTree {
         bst.printLevelByLevel(bst.root);
 
 
-//        bst.deleteNode(new TreeNode<>(3));
+//        bst.deleteNode(new TreeNode<>(42));
 //        System.out.println();
 //        System.out.println("------print level by level---------");
 //        bst.printLevelByLevel(bst.root);
