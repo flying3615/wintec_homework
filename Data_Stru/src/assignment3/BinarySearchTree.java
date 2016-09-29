@@ -244,12 +244,12 @@ public class BinarySearchTree {
         prIncOrder(current.left);
         System.out.print(current.element + " ");
         prIncOrder(current.right);
-
     }
 
     public static void main(String[] args) {
 
         BinarySearchTree bst = new BinarySearchTree();
+
         //              37
 //                  /       \
 //                 /         \
@@ -261,26 +261,26 @@ public class BinarySearchTree {
 //           2   8 25 34 38 41 100 130
 
         System.out.println("------insert---------");
-        System.out.println(bst.insert(new TreeNode<>(37)));
-        System.out.println(bst.insert(new TreeNode<>(24)));
-        System.out.println(bst.insert(new TreeNode<>(42)));
-        System.out.println(bst.insert(new TreeNode<>(7)));
-        System.out.println(bst.insert(new TreeNode<>(32)));
-        System.out.println(bst.insert(new TreeNode<>(40)));
-        System.out.println(bst.insert(new TreeNode<>(120)));
-        System.out.println(bst.insert(new TreeNode<>(2)));
-        System.out.println(bst.insert(new TreeNode<>(8)));
-        System.out.println(bst.insert(new TreeNode<>(25)));
-        System.out.println(bst.insert(new TreeNode<>(34)));
-        System.out.println(bst.insert(new TreeNode<>(38)));
-        System.out.println(bst.insert(new TreeNode<>(41)));
-        System.out.println(bst.insert(new TreeNode<>(100)));
-        System.out.println(bst.insert(new TreeNode<>(130)));
+        bst.insert(new TreeNode<>(37));
+        bst.insert(new TreeNode<>(24));
+        bst.insert(new TreeNode<>(42));
+        bst.insert(new TreeNode<>(7));
+        bst.insert(new TreeNode<>(3));
+        bst.insert(new TreeNode<>(4)));
+        bst.insert(new TreeNode<>(120));
+        bst.insert(new TreeNode<>(2));
+        bst.insert(new TreeNode<>(8));
+        bst.insert(new TreeNode<>(25));
+        bst.insert(new TreeNode<>(34));
+        bst.insert(new TreeNode<>(38));
+        bst.insert(new TreeNode<>(41));
+        bst.insert(new TreeNode<>(100));
+        bst.insert(new TreeNode<>(130));
 
         System.out.println();
         System.out.println("------search_rec---------");
-        System.out.println(bst.search_rec(bst.root, 31));
-        System.out.println(bst.search_rec(bst.root, 22));
+        System.out.println(bst.search_rec(bst.root, 37));
+        System.out.println(bst.search_rec(bst.root, 25));
         System.out.println(bst.search_rec(bst.root, 10));
 
         System.out.println();
