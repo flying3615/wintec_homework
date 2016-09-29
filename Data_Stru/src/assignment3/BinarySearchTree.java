@@ -266,7 +266,7 @@ public class BinarySearchTree {
         bst.insert(new TreeNode<>(42));
         bst.insert(new TreeNode<>(7));
         bst.insert(new TreeNode<>(3));
-        bst.insert(new TreeNode<>(4)));
+        bst.insert(new TreeNode<>(4));
         bst.insert(new TreeNode<>(120));
         bst.insert(new TreeNode<>(2));
         bst.insert(new TreeNode<>(8));
