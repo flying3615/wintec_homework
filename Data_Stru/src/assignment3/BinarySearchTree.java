@@ -244,12 +244,12 @@ public class BinarySearchTree {
         prIncOrder(current.left);
         System.out.print(current.element + " ");
         prIncOrder(current.right);
+
     }
 
     public static void main(String[] args) {
 
         BinarySearchTree bst = new BinarySearchTree();
-
         //              37
 //                  /       \
 //                 /         \
@@ -265,8 +265,8 @@ public class BinarySearchTree {
         bst.insert(new TreeNode<>(24));
         bst.insert(new TreeNode<>(42));
         bst.insert(new TreeNode<>(7));
-        bst.insert(new TreeNode<>(3));
-        bst.insert(new TreeNode<>(4));
+        bst.insert(new TreeNode<>(32));
+        bst.insert(new TreeNode<>(40));
         bst.insert(new TreeNode<>(120));
         bst.insert(new TreeNode<>(2));
         bst.insert(new TreeNode<>(8));
@@ -279,8 +279,8 @@ public class BinarySearchTree {
 
         System.out.println();
         System.out.println("------search_rec---------");
-        System.out.println(bst.search_rec(bst.root, 37));
         System.out.println(bst.search_rec(bst.root, 25));
+        System.out.println(bst.search_rec(bst.root, 38));
         System.out.println(bst.search_rec(bst.root, 10));
 
         System.out.println();
