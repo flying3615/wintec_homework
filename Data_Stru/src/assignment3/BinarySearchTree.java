@@ -109,25 +109,21 @@ public class BinarySearchTree {
     public void printLevelByLevel(TreeNode current){
         int height = this.findHighHeight(current);
         for(int i=0;i<height;i++){
-            if(i==0) System.out.println("root="+current.element);
+            if(i==0){
+                System.out.println("-------level 0----------");
+                System.out.println();
+                System.out.println("root="+current.element);
+            }
             System.out.println();
-            System.out.println("-------level "+i+"----------");
+            System.out.println("-------level "+(i+1)+"----------");
             this.printSubTree(current,i,0);
         }
     }
-//                     37
-//                  /       \
-//                 /         \
-//                /           \
-//               24           42
-//              /  \        /   \
-//             7    32     40   120
-//            / \   / \   / \    / \
-//           2   8 25 34 38 41 100 130
+
     private void printSubTree(TreeNode current, int level, int acc) {
         if(current==null) return;
-
         if(acc==level){
+            //level=0 & acc=0, it's actually level 1, printing its child node
             if(current.left!=null)System.out.print("left="+current.left.element+" ");
             if(current.right!=null)System.out.print("right="+current.right.element+" ");
         }else{
@@ -138,7 +134,6 @@ public class BinarySearchTree {
     }
 
     public boolean deleteNode(TreeNode<Integer> node) {
-
         //step 1, check if node exists in the given tree
         if (root == null) return false;
 
@@ -255,6 +250,15 @@ public class BinarySearchTree {
     public static void main(String[] args) {
 
         BinarySearchTree bst = new BinarySearchTree();
+        //              37
+//                  /       \
+//                 /         \
+//                /           \
+//               24           42
+//              /  \        /   \
+//             7    32     40   120
+//            / \   / \   / \    / \
+//           2   8 25 34 38 41 100 130
 
         System.out.println("------insert---------");
         System.out.println(bst.insert(new TreeNode<>(37)));
@@ -263,15 +267,15 @@ public class BinarySearchTree {
         System.out.println(bst.insert(new TreeNode<>(7)));
         System.out.println(bst.insert(new TreeNode<>(32)));
         System.out.println(bst.insert(new TreeNode<>(40)));
-//        System.out.println(bst.insert(new TreeNode<>(120)));
+        System.out.println(bst.insert(new TreeNode<>(120)));
         System.out.println(bst.insert(new TreeNode<>(2)));
         System.out.println(bst.insert(new TreeNode<>(8)));
         System.out.println(bst.insert(new TreeNode<>(25)));
         System.out.println(bst.insert(new TreeNode<>(34)));
         System.out.println(bst.insert(new TreeNode<>(38)));
         System.out.println(bst.insert(new TreeNode<>(41)));
-//        System.out.println(bst.insert(new TreeNode<>(100)));
-//        System.out.println(bst.insert(new TreeNode<>(130)));
+        System.out.println(bst.insert(new TreeNode<>(100)));
+        System.out.println(bst.insert(new TreeNode<>(130)));
 
         System.out.println();
         System.out.println("------search_rec---------");
