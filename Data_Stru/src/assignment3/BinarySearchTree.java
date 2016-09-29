@@ -244,12 +244,12 @@ public class BinarySearchTree {
         prIncOrder(current.left);
         System.out.print(current.element + " ");
         prIncOrder(current.right);
-
     }
 
     public static void main(String[] args) {
 
         BinarySearchTree bst = new BinarySearchTree();
+
         //              37
 //                  /       \
 //                 /         \
