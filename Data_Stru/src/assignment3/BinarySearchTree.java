@@ -96,23 +96,34 @@ public class BinarySearchTree {
 
 
     //!!!!
-    public void printLeveByLevel(TreeNode current) {
-        if (current == null) return;
-        if (current.left == null && current.right == null) {
-//            System.out.println("leaf =" + current.element);
-            return;
-        }
-        System.out.println(current.element);
-        System.out.println("----level-----");
-        if (current.left != null) System.out.println("left=" + current.left.element);
-        if (current.right != null) System.out.println("right=" + current.right.element);
-
-        printLeveByLevel(current.left);
-        printLeveByLevel(current.right);
-
+    public void printLevelByLevel(TreeNode current) {
+        System.out.println("root="+current.element);
+        this.printSubTree(current,0);
     }
 
-    //print increasing order
+
+    private void printSubTree(TreeNode current, int level){
+        if (current == null) return;
+        if (current.left == null && current.right == null) {
+            System.out.println("leaf =" + current.element);
+            return;
+        }
+        System.out.println("----level "+(level++)+"-----");
+        if (current.left != null) {
+            System.out.print("left=" + current.left.element+" ");
+        }
+        if (current.right != null){
+            System.out.println("right=" + current.right.element);
+        }else{
+            System.out.println();
+        }
+
+        printSubTree(current.left,level);
+        printSubTree(current.right,level);
+    }
+
+
+    //printSubTree increasing order
     public void prIncOrder(TreeNode current) {
         if(current==null) return;
         prIncOrder(current.left);
@@ -132,24 +143,28 @@ public class BinarySearchTree {
         System.out.println(bst.insert(66));
         System.out.println(bst.insert(5));
 
+        System.out.println();
         System.out.println("------search_rec---------");
         System.out.println(bst.search_rec(bst.root, 9));
         System.out.println(bst.search_rec(bst.root, 6));
         System.out.println(bst.search_rec(bst.root, 10));
 
+        System.out.println();
         System.out.println("------search_loop---------");
         System.out.println(bst.search_loop(9));
         System.out.println(bst.search_loop(6));
         System.out.println(bst.search_loop(10));
 
+        System.out.println();
         System.out.println("------find height---------");
-        System.out.println(bst.findHighHeight(bst.root));
-        System.out.println(bst.findLowHeight(bst.root));
+        System.out.println("highest level ="+bst.findHighHeight(bst.root));
+        System.out.println("lowest level="+bst.findLowHeight(bst.root));
 
+        System.out.println();
         System.out.println("------print level by level---------");
-        bst.printLeveByLevel(bst.root);
+        bst.printLevelByLevel(bst.root);
 
-
+        System.out.println();
         System.out.println("------print incre order---------");
         bst.prIncOrder(bst.root);
     }
