@@ -1,5 +1,8 @@
 package assignment3;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import static assignment3.BinarySearchTree.SIDE.*;
 
 /**
@@ -104,53 +107,63 @@ public class BinarySearchTree {
     }
 
 
-    public void printLevelByLevel(TreeNode<Integer> current){
+    public void printLevelByLevel(TreeNode<Integer> current) {
         int height = this.findHighHeight(current);
-        for(int i=0;i<height;i++){
-            if(i==0){
+        for (int i = 0; i < height; i++) {
+            if (i == 0) {
                 System.out.println("-------level 0----------");
                 System.out.println();
-                System.out.println("root="+current.element);
+                System.out.println("root=" + current.element);
             }
             System.out.println();
-            System.out.println("-------level "+(i+1)+"----------");
-            this.printSubTree(current,i,0);
+            System.out.println("-------level " + (i + 1) + "----------");
+            this.printSubTree(current, i, 0);
         }
     }
 
     private void printSubTree(TreeNode<Integer> current, int level, int acc) {
-        if(current==null) return;
-        if(acc==level){
+        if (current == null) return;
+        if (acc == level) {
             //level=0 & acc=0, it's actually level 1, printing its child node
-            if(current.left!=null)System.out.print("left="+current.left.element+" ");
-            if(current.right!=null)System.out.print("right="+current.right.element+" ");
-        }else{
-            acc+=1;
-            printSubTree(current.left,level,acc);
-            printSubTree(current.right,level,acc);
+            if (current.left != null) System.out.print("left=" + current.left.element + " ");
+            if (current.right != null) System.out.print("right=" + current.right.element + " ");
+        } else {
+            acc += 1;
+            printSubTree(current.left, level, acc);
+            printSubTree(current.right, level, acc);
         }
     }
 
 
-    public int numOfNodes(TreeNode<Integer> node){
-    	if(node!=null){
-    		if(node.left==null&&node.right==null){
-    			return 1;
-    		}else{
-    			return 1+numOfNodes(node.left)+numOfNodes(node.right);
-    		}
-    	}else{
-    		return 0;
-    	}
+    public int numOfNodes(TreeNode<Integer> node) {
+        if (node != null) {
+            return 1 + numOfNodes(node.left) + numOfNodes(node.right);
+        } else {
+            return 0;
+        }
     }
 
-    public int maxID(TreeNode<Integer> node){
-    	if(node==null) return -1;
-    	if(node.right!=null){
-        		return maxID(node.right);
-    	}else{
-    		return node.element;
-    	}
+    public int maxID(TreeNode<Integer> node) {
+        if (node == null) return -1;
+        if (node.right != null) {
+            return maxID(node.right);
+        } else {
+            return node.element;
+        }
+    }
+
+    //how to print with level info?
+    public void printLevelByLevelQ(TreeNode<Integer> node){
+        Queue<TreeNode<Integer>> tmp = new LinkedList<>();
+        tmp.add(node);
+        while(!tmp.isEmpty()){
+            TreeNode<Integer> inner = tmp.poll();
+            System.out.println(inner.element+" ");
+            if(inner.left!=null) tmp.add(inner.left);
+            if(inner.right!=null) tmp.add(inner.right);
+
+//            System.out.println("-----new level------");
+        }
     }
 
 
@@ -288,15 +301,15 @@ public class BinarySearchTree {
         bst.insert(new TreeNode<>(7));
         bst.insert(new TreeNode<>(32));
         bst.insert(new TreeNode<>(40));
-//        bst.insert(new TreeNode<>(120));
+        bst.insert(new TreeNode<>(120));
         bst.insert(new TreeNode<>(2));
         bst.insert(new TreeNode<>(8));
         bst.insert(new TreeNode<>(25));
         bst.insert(new TreeNode<>(34));
         bst.insert(new TreeNode<>(38));
         bst.insert(new TreeNode<>(41));
-//        bst.insert(new TreeNode<>(100));
-//        bst.insert(new TreeNode<>(130));
+        bst.insert(new TreeNode<>(100));
+        bst.insert(new TreeNode<>(130));
 
         System.out.println();
         System.out.println("------search_rec---------");
@@ -330,7 +343,6 @@ public class BinarySearchTree {
         System.out.println();
         System.out.println("------biggest number of nodes---------");
         System.out.println(bst.maxID(bst.root));
-
 
 
 //        bst.deleteNode(new TreeNode<>(42));
