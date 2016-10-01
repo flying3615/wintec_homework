@@ -136,7 +136,7 @@ public class ItemList {
         ItemList tmpItemList = new ItemList();
         while (thisCurrent != null) {
             while (thatCurrent != null) {
-                if (thisCurrent.value == thatCurrent.value) {
+                if (thisCurrent.value.equals(thatCurrent.value)) {
                     tmpItemList.addItem(thatCurrent.value);
                 }
                 thatCurrent = thatCurrent.next;

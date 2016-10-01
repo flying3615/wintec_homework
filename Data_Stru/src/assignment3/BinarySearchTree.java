@@ -154,6 +154,7 @@ public class BinarySearchTree {
 
     //how to print with level info?
     public void printLevelByLevelQ(TreeNode<Integer> node){
+        int level = 0;
         Queue<TreeNode<Integer>> tmp = new LinkedList<>();
         tmp.add(node);
         while(!tmp.isEmpty()){
@@ -162,7 +163,10 @@ public class BinarySearchTree {
             if(inner.left!=null) tmp.add(inner.left);
             if(inner.right!=null) tmp.add(inner.right);
 
-//            System.out.println("-----new level------");
+            if(inner.left!=null||inner.right!=null){
+                //double level count, it will duplicate in sub-level
+                System.out.println("-----level "+level+++"------");
+            }
         }
     }
 

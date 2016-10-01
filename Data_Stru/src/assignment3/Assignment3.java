@@ -41,6 +41,7 @@ public class Assignment3 {
 		System.out.println();
 		System.out.println("------print level by level---------");
 		bst.printLevelByLevel(bst.root);
+		System.out.println();
 		System.out.println("------print level by level in Q---------");
 		bst.printLevelByLevelQ(bst.root);
 
