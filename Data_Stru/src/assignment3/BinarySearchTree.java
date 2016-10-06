@@ -7,7 +7,6 @@ import static assignment3.BinarySearchTree.SIDE.*;
 
 /**
  * Created by liuyufei on 28/09/16.
- * diab_a@hotmail.com
  */
 public class BinarySearchTree {
 
