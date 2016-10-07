@@ -151,21 +151,37 @@ public class BinarySearchTree {
         }
     }
 
-    //how to print with level info?
+    //how to print with level info? construct the node with level info
+    int current_level = -1;
     public void printLevelByLevelQ(TreeNode<Integer> node){
         int level = 0;
         Queue<TreeNode<Integer>> tmp = new LinkedList<>();
+        // Add level zero to node
+        node.setLevel(level);
         tmp.add(node);
         while(!tmp.isEmpty()){
             TreeNode<Integer> inner = tmp.poll();
-            System.out.println(inner.element+" ");
-            if(inner.left!=null) tmp.add(inner.left);
-            if(inner.right!=null) tmp.add(inner.right);
-
-            if(inner.left!=null||inner.right!=null){
-                //double level count, it will duplicate in sub-level
-                System.out.println("-----level "+level+++"------");
+            // l = read the level from the node you polled;
+            if(inner.getLevel() > current_level) {
+         	   System.out.println("-----level "+inner.getLevel()+"------");
+         	   current_level = inner.getLevel();
             }
+
+            System.out.println(inner.element+" ");
+
+            if(inner.left!=null) {
+            	// Set the level of inner.left to l +1;
+            	inner.left.setLevel(inner.getLevel()+1);
+            	tmp.add(inner.left);
+            }
+
+            if(inner.right!=null) {
+            	// Set the level of inner.right to l +1;
+            	inner.right.setLevel(inner.getLevel()+1);
+            	tmp.add(inner.right);
+            }
+
+
         }
     }
 

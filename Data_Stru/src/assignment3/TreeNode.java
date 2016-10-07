@@ -9,7 +9,20 @@ public class TreeNode<E> {
     TreeNode<E> left;
     TreeNode<E> right;
 
-    public TreeNode(E element){
+    int level;
+
+    public int getLevel() {
+		return level;
+	}
+
+
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+
+	public TreeNode(E element){
         this.element = element;
     }
 
@@ -30,4 +43,7 @@ public class TreeNode<E> {
     public int hashCode() {
         return element.hashCode();
     }
+
+
+
 }
