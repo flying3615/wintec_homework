@@ -6,6 +6,7 @@ package assignment3;
  */
 public class TreeNode<E> {
 
+
     E element;
     TreeNode<E> left;
     TreeNode<E> right;
