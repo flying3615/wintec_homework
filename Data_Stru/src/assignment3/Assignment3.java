@@ -52,6 +52,10 @@ public class Assignment3 {
 		System.out.println();
 		System.out.println("------biggest number of nodes---------");
 		System.out.println(bst.maxID(bst.root));
+
+		//check if a given binary search tree is a real binary search tree
+		//print it out by inorder, and its always in increament order
+		//cannot simplely check the left node is less than root, and root less than the right node
 	}
 
 }
