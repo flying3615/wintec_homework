@@ -1,11 +1,9 @@
 package Java_FP.collection;
 
 import java.util.Arrays;
-import java.util.Optional;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 /**
  * Created by liuyufei on 19/10/16.
@@ -36,8 +34,14 @@ public class CollectionExample_8 {
 
     private static String summarize(final String[] description) {
         return Arrays.asList(description).stream()
+                //peek take the input to a consumer and pass it to the next processor
+                //for debug?
+                .peek(s-> System.out.println("About to filter: "+s))
                 .filter(NON_EMPTY)
+                .limit(3) //only process the first 3 items
+                .peek(s-> System.out.println("About to map: "+s))
                 .map(lastWord)
+                .peek(s-> System.out.println("About to reduce: "+s))
                 .reduce(joinOn(" & "))
                 .orElse("");
         //avoid null pointer exception, if allTogetherNow is empty, "" will be returned
