@@ -36,14 +36,13 @@ public class Assigment4 {
         }catch (IOException e) {
             System.out.println("Unable to create: " + e.getMessage());
         } finally {
-            if (scanner != null)
-                scanner.close();
+            if (scanner != null) scanner.close();
         }
-        print3Entry(result);
+        print3Entries(result);
         sortByValue(result);
     }
 
-    private static void print3Entry(Map<String,Integer> result){
+    private static void print3Entries(Map<String,Integer> result){
     	Set<Map.Entry<String, Integer>> entries = result.entrySet();
     	Iterator<Map.Entry<String, Integer>> iterable = entries.iterator();
     	int MAX = 3;
@@ -65,7 +64,7 @@ public class Assigment4 {
                    Map.Entry::getKey,
                    Map.Entry::getValue,
                    (e1, e2) -> e1,
-                   LinkedHashMap::new //need to record the order of insertion!!!
+                   LinkedHashMap::new //need to record the order of insertion via LinkedHashMap!!!
                  ));
     	 System.out.println(result);
     }
