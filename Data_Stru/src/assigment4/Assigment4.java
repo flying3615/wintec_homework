@@ -2,11 +2,14 @@ package assigment4;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by liuyufei on 26/10/16.
@@ -37,6 +40,7 @@ public class Assigment4 {
                 scanner.close();
         }
         print3Entry(result);
+        sortByValue(result);
     }
 
     private static void print3Entry(Map<String,Integer> result){
@@ -51,5 +55,18 @@ public class Assigment4 {
 				break;
 			}
 		}
+    }
+
+    private static void sortByValue(Map<String,Integer> map){
+    	 Map<String, Integer> result =  map.entrySet()
+                 .stream()
+                 .sorted(Map.Entry.comparingByValue(Collections.reverseOrder()))
+                 .collect(Collectors.toMap(
+                   Map.Entry::getKey,
+                   Map.Entry::getValue,
+                   (e1, e2) -> e1,
+                   LinkedHashMap::new //need to record the order of insertion!!!
+                 ));
+    	 System.out.println(result);
     }
 }
