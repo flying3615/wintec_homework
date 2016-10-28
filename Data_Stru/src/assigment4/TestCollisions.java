@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class TestCollisions {
 
-	static final int MAX_SIZE = 10000;
+	static final int MAX_SIZE = 10_000;
 
 	public static void main(String[] args) {
 		try {
@@ -27,6 +27,7 @@ public class TestCollisions {
 			bean = (Bean) clazz.getDeclaredConstructor(Integer.class).newInstance(i);
 			map.put(bean, 1);
 		}
+		//get the last one
 		map.get(bean);
 		long elapse = System.currentTimeMillis()-start;
 		System.out.println(elapse);
