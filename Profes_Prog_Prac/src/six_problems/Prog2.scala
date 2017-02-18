@@ -2,6 +2,8 @@ package six_problems
 
 import java.io.File
 
+import scala.annotation.tailrec
+import scala.collection.mutable.ArrayBuffer
 import scala.swing.{BoxPanel, Button, FileChooser, FlowPanel, Label, MainFrame, Orientation, ScrollPane, Swing, TextArea}
 
 /**
@@ -46,15 +48,27 @@ class Prog2 extends MainFrame{
 
   def selectFile(): Unit = {
     fileChooser.showOpenDialog(mainPanel) match {
-      case FileChooser.Result.Approve => listFileNames(fileChooser.selectedFile)
+      case FileChooser.Result.Approve =>  {
+        path.clear()
+        listFileNames(fileChooser.selectedFile)
+        textArea.text = path.mkString("\n")
+      };repaint()
       case _ => println("other action!!")
     }
   }
 
-  def listFileNames(file:File) = {
-    val fileNames = file.listFiles().map(_.getAbsolutePath).mkString("\n")
-    textArea.text = fileNames
-    repaint()
+
+  val path:ArrayBuffer[String] = new ArrayBuffer()
+
+  final def listFileNames(file:File):Unit = {
+    file.listFiles().foreach(f=>{
+      if(f.isDirectory){
+        path+=f.getAbsolutePath
+        listFileNames(f)
+      }else{
+        path+=f.getAbsolutePath
+      }
+    })
   }
 
 }
