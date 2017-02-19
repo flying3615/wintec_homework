@@ -4,6 +4,8 @@ import scala.io.Source
 
 /**
   * Created by liuyufei on 19/02/17.
+  Suppose you have a text file with 100,000 words. Our task is to find the most frequent term in this
+  file efficiently. Write a program that outputs the most frequent words.
   */
 object Prog5 extends App{
 

@@ -73,7 +73,7 @@ class Prog2 extends MainFrame{
 
 }
 
-object Main extends App{
+object RunIt extends App{
   val selector = new Prog2
   selector.visible = true
 }
