@@ -5,7 +5,7 @@ package six_problems
   */
 
 
-trait Sortable {
+sealed trait Sortable {
   def sort(input: Array[Int]): Array[Int]
 }
 
