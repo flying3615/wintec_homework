@@ -25,7 +25,6 @@ object Main extends App{
   val chicken = new Chicken
 
 
-
   println("*"*10+" single say "+"*"*10)
 
   Sayit.say(animal)

@@ -2,7 +2,6 @@ package six_problems
 
 import java.io.File
 
-import scala.annotation.tailrec
 import scala.collection.mutable.ArrayBuffer
 import scala.swing.{BoxPanel, Button, FileChooser, FlowPanel, Label, MainFrame, Orientation, ScrollPane, Swing, TextArea}
 
