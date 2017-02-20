@@ -6,17 +6,17 @@ package six_problems
 
 
 trait Sortable {
-  def sort(input:Array[Int]):Array[Int]
+  def sort(input: Array[Int]): Array[Int]
 }
 
-object BubbleSort extends Sortable{
+object BubbleSort extends Sortable {
   override def sort(input: Array[Int]) = {
-    if(input.isEmpty) new Array[Int](0)
-    for(i <- 0 until input.length-1; j <- 0 until input.length-1-i){
-      if(input(j)>input(j+1)){
+    if (input.isEmpty) new Array[Int](0)
+    for (i <- 0 until input.length - 1; j <- 0 until input.length - 1 - i) {
+      if (input(j) > input(j + 1)) {
         val temp = input(j)
-        input(j) = input(j+1)
-        input(j+1) = temp
+        input(j) = input(j + 1)
+        input(j + 1) = temp
       }
     }
     input
@@ -24,36 +24,42 @@ object BubbleSort extends Sortable{
 }
 
 
-object QuickSort extends Sortable{
-  override def sort(input: Array[Int]):Array[Int] = {
-    if(input.length<2) input
-    else{
-      val pivot = input(input.length/2)
-      sort(input filter (_<pivot)) ++ (input filter (_==pivot)) ++ sort(input filter (_>pivot))
+object QuickSort extends Sortable {
+  override def sort(input: Array[Int]): Array[Int] = {
+    if (input.length < 2) input
+    else {
+      val pivot = input(input.length / 2)
+      sort(input filter (_ < pivot)) ++ (input filter (_ == pivot)) ++ sort(input filter (_ > pivot))
     }
   }
 }
 
-object Prog4 extends App{
+object Prog4 extends App {
 
-  def runWithTimer(input:Array[Int])(f:(Array[Int])=>Array[Int]) = {
+
+  def generateArray(size: Int) = {
+    val r = scala.util.Random
+    (for (i <- 0 to size) yield r.nextInt(size)).toArray
+  }
+
+  def runWithTimer(input: Array[Int])(f: (Array[Int]) => Array[Int]) = {
     val start = System.currentTimeMillis()
-    println(f(input).mkString(","))
+    f(input)
     val end = System.currentTimeMillis()
-    println(end-start)
+    println(end - start)
   }
 
-  //TODO generate Randome
 
+  val a = generateArray(10000)
 
-  val a = Array(10,2,1,5,3,8,6,9,7,4)
+  //  println(a.mkString(","))
 
-  runWithTimer(a){
-    BubbleSort.sort _
-  }
-
-  runWithTimer(a){
+  runWithTimer(a) {
     QuickSort.sort _
+  }
+
+  runWithTimer(a) {
+    BubbleSort.sort _
   }
 
 }
