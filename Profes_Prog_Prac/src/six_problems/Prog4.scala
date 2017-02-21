@@ -3,8 +3,6 @@ package six_problems
 /**
   * Created by liuyufei on 20/02/17.
   */
-
-
 sealed trait Sortable {
   def sort(input: Array[Int]): Array[Int]
 }
@@ -42,11 +40,12 @@ object Prog4 extends App {
     (for (i <- 0 to size) yield r.nextInt(size)).toArray
   }
 
-  def runWithTimer(input: Array[Int])(f: (Array[Int]) => Array[Int]) = {
+  def runWithTimer[A,B](input: A)(f: A => B):B = {
     val start = System.currentTimeMillis()
-    f(input)
+    val result = f(input)
     val end = System.currentTimeMillis()
     println(end - start)
+    result
   }
 
 
