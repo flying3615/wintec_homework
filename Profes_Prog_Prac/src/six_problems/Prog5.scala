@@ -12,7 +12,7 @@ object Prog5 extends App{
 
   val filsSource = Source.fromFile("/Users/liuyufei/IdeaProjects/wintec_homework/Profes_Prog_Prac/src/six_problems/prog5_input.txt")
 
-  val wordFreqMap = filsSource.getLines().toStream.flatMap(_.split("\\s+")).foldLeft(Map[String,Int]()){ (m,w)=>
+  val wordFreqMap = filsSource.getLines().flatMap(_.split("\\s+")).foldLeft(Map[String,Int]()){ (m,w)=>
     m + (w -> (m.getOrElse(w,0) + 1))
   }
 
