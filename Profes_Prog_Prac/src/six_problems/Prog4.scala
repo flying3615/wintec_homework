@@ -34,7 +34,6 @@ object QuickSort extends Sortable {
 
 object Prog4 extends App {
 
-
   def generateArray(size: Int) = {
     val r = scala.util.Random
     (for (i <- 0 to size) yield r.nextInt(size)).toArray
