@@ -63,8 +63,10 @@ class Prog2 extends MainFrame{
     file.listFiles().foreach(f=>{
       if(f.isDirectory){
         path+=f.getAbsolutePath
+        //if the file is a directory, recurse it
         listFileNames(f)
       }else{
+        //if the file is a file, add its path to a list
         path+=f.getAbsolutePath
       }
     })

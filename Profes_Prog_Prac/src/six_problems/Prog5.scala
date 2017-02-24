@@ -10,16 +10,21 @@ import scala.io.Source
 object Prog5 extends App{
 
 
-  val filsSource = Source.fromFile("/Users/liuyufei/IdeaProjects/wintec_homework/Profes_Prog_Prac/src/six_problems/prog5_input.txt")
+  val fileSource = Source.fromFile("/Users/liuyufei/IdeaProjects/wintec_homework/Profes_Prog_Prac/src/six_problems/prog5_input.txt")
 
-  val wordFreqMap = filsSource.getLines().flatMap(_.split("\\s+")).foldLeft(Map[String,Int]()){ (m,w)=>
+  //read from a file by lines, then flat lines to word list by separating with space,
+  //use map to store word->frequency, fold map and increase frequency if the word already exists.
+  val wordFreqMap = fileSource.getLines().flatMap(_.split("\\s+")).foldLeft(Map[String,Int]()){ (m, w)=>
     m + (w -> (m.getOrElse(w,0) + 1))
   }
 
+  //sort the map by value(frequency), reverse the ascending, then get the head of the sorted map
   val topMostTuple = wordFreqMap.toArray.sortBy(_._2).reverse.head
 
+  //print out the most appeared word and its frequency
   print(topMostTuple._1,topMostTuple._2)
 
-  filsSource.close()
+  //close file handler
+  fileSource.close()
 
 }

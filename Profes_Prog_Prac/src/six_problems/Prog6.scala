@@ -4,12 +4,12 @@ package six_problems
   * Created by liuyufei on 19/02/17.
   */
 class Animal(val sound:String = "rustle")
-class Bird(override val sound:String="call") extends Animal
+class Bird(override val sound:String="tweet") extends Animal
 class Chicken (override val sound:String="cluck") extends Bird
 
 object Sayit{
   def say(animal: Animal): Unit ={
-    println(animal.sound)
+    println(animal.getClass.getSimpleName+" say: "+animal.sound)
   }
 
   def say4All(animals:List[Animal]): Unit ={
