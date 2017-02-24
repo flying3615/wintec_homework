@@ -31,7 +31,7 @@ class Prog2 extends MainFrame{
     contents += Button("Close"){
       System.exit(0)
     }
-    contents += Button("click") {
+    contents += Button("Select") {
       selectFile()
     }
   }
@@ -47,11 +47,11 @@ class Prog2 extends MainFrame{
 
   def selectFile(): Unit = {
     fileChooser.showOpenDialog(mainPanel) match {
-      case FileChooser.Result.Approve =>  {
+      case FileChooser.Result.Approve =>
         path.clear()
         listFileNames(fileChooser.selectedFile)
         textArea.text = path.mkString("\n")
-      };repaint()
+        repaint()
       case _ => println("other action!!")
     }
   }
