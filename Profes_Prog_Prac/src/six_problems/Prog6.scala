@@ -3,44 +3,62 @@ package six_problems
 /**
   * Created by liuyufei on 19/02/17.
   */
-class Animal(val sound:String = "rustle")
-class Bird(override val sound:String="tweet") extends Animal
-class Chicken (override val sound:String="cluck") extends Bird
 
-object Sayit{
-  def say(animal: Animal): Unit ={
-    println(animal.getClass.getSimpleName+" say: "+animal.sound)
-  }
+trait flyable{
+  def fly
+}
 
-  def say4All(animals:List[Animal]): Unit ={
-    animals.foreach{say(_)}
-  }
+trait soundable{
+  def sound
+}
+
+abstract class Creature(val className:String){
+  def eat
+}
+
+class Bird extends Creature(className = "Bird") with flyable with soundable {
+
+  override def fly: Unit = println(className + " flies high")
+
+  override def eat: Unit = println(className+ " eats worms")
+
+  override def sound: Unit = println(className+" sounds tweet")
+}
+
+class Dragonfly  extends Creature(className = "Dragonfly") with flyable{
+
+  override def eat: Unit = println(className+ " eats insects ")
+
+  override def fly: Unit = println(className+" flies low ")
+}
+
+class Cicada extends Creature(className = "Cicada") with soundable{
+
+  override def eat: Unit = println(className+" eats plant")
+
+  override def sound: Unit = println(className+" sounds squeak")
 }
 
 
 object Main extends App{
 
-  val animal = new Animal
   val bird = new Bird
-  val chicken = new Chicken
+  val dragonfly = new Dragonfly
+  val cicada = new Cicada
 
+  bird.eat
+  bird.fly
+  bird.sound
 
   println("*"*10+" single say "+"*"*10)
 
-  Sayit.say(animal)
-  Sayit.say(bird)
-  Sayit.say(chicken)
+  dragonfly.eat
+  dragonfly.fly
 
+  println("*"*10+" single say "+"*"*10)
 
-  val animals = List(new Animal,new Animal,new Animal)
-  val birds = List(new Bird,new Bird,new Bird)
-  val chickens = List(new Chicken,new Chicken,new Chicken)
-
-  println("*"*10+" Say 4 All "+"*"*10)
-  //covariant
-  Sayit.say4All(animals)
-  Sayit.say4All(birds)
-  Sayit.say4All(chickens)
+  cicada.eat
+  cicada.sound
 
 
 }

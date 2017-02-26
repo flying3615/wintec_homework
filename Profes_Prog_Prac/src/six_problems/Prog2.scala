@@ -52,7 +52,8 @@ class Prog2 extends MainFrame{
         listFileNames(fileChooser.selectedFile)
         textArea.text = path.mkString("\n")
         repaint()
-      case _ => println("other action!!")
+      case FileChooser.Result.Cancel => println("user close filechooser dialog")
+      case _ => println("other action, maybe a error")
     }
   }
 
