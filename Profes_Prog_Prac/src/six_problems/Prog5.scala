@@ -61,4 +61,4 @@ class FolderLeftable[A](elements:A*){
 
 // for reverse, it's O(n)
 
-//totally, O(n^2)+O(n)+O(n log n)+O(n)
+//totally, O(n^2)+O(n)+O(n log n)+O(n) = O(n^2)
