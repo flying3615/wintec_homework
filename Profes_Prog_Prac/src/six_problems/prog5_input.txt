@@ -1,2 +1,2 @@
 Write a program to demonstrate polymorphism which includes virtual method and override. In
-addition to this, describe your program in word document (one page should be enough).
+addition to this, describe your program in word document (one page should be enough). program

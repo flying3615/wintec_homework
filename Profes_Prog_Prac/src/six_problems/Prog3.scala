@@ -9,12 +9,14 @@ class BankAccount{
   private var balance = 0
 
   //synchronized
-  def deposit(amount:Int):Unit = this.synchronized{
+//  def deposit(amount:Int):Unit = this.synchronized{
+  def deposit(amount:Int):Unit = {
     if(amount>0) balance+=amount
   }
 
   //synchronized
-  def withdraw(amount:Int):Int = this.synchronized{
+//  def withdraw(amount:Int):Int = this.synchronized{
+  def withdraw(amount:Int):Int = {
     if(amount>0&&balance>=amount){
       //current thread sleep for 1 second to simulate dirty-read in multithreading
       Thread.sleep(1000)
@@ -42,6 +44,5 @@ object Prog3 extends App {
   //start two thread, in normal case, the second thread should throw "insufficient funds error"
   new Thread(new MyThread(bankAccount)).start()
   new Thread(new MyThread(bankAccount)).start()
-
 
 }

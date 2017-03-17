@@ -18,11 +18,18 @@ object Prog5 extends App{
     m + (w -> (m.getOrElse(w,0) + 1))
   }
 
+
+  val mostFreq = wordFreqMap.foldLeft(("",0))((freq,entry)=>{
+    if(freq._2 < entry._2) entry else freq
+  })
+
+  println(mostFreq)
+
   //sort the map by value(frequency), reverse the ascending, then get the head of the sorted map
-  val topMostTuple = wordFreqMap.toArray.sortBy(_._2).reverse.head
+//  val topMostTuple = wordFreqMap.toArray.sortBy(_._2).reverse.head
 
   //print out the most appeared word and its frequency
-  print(topMostTuple._1,topMostTuple._2)
+//  print(topMostTuple._1,topMostTuple._2)
 
   //close file handler
   fileSource.close()
