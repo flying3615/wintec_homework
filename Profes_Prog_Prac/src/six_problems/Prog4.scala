@@ -112,11 +112,11 @@ object Prog4 extends App {
     println("sort "+array.length+" size array")
 
     runWithTimer(array,"QuickSort") {
-      QuickSort.sort _
+      QuickSort.sort
     }
 
     runWithTimer(array,"BubbleSort") {
-      BubbleSort.sort _
+      BubbleSort.sort
     }
 
     println("-"*20)
